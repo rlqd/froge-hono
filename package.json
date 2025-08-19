@@ -1,0 +1,65 @@
+{
+  "name": "froge-hono",
+  "version": "1.0.0",
+  "files": [
+    "dist",
+    "froge-hono.webp"
+  ],
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.ts"
+      ]
+    }
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "prepublishOnly": "npm run test && npm run clean && npm run build",
+    "clean": "rimraf dist && rimraf test-dist",
+    "build": "tsc",
+    "test": "npm run build-tests && npm run exec-tests",
+    "build-tests": "tsc --project tsconfig.test.json",
+    "exec-tests": "node --test \"test-dist/**/*.test.js\""
+  },
+  "author": "rlqd.dev",
+  "license": "MIT",
+  "description": "Froge adapter for Hono",
+  "peerDependencies": {
+    "@hono/node-server": "^1.19.0",
+    "froge": "^2.0.0",
+    "hono": "^4.9.2"
+  },
+  "peerDependenciesMeta": {
+    "@hono/node-server": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@hono/node-server": "^1.19.0",
+    "@types/bun": "^1.2.20",
+    "@types/deno": "^2.3.0",
+    "@types/node": "^22.15.18",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.8.3"
+  },
+  "bugs": {
+    "url": "https://github.com/rlqd/froge-hono/issues"
+  },
+  "repository": {
+    "url": "https://github.com/rlqd/froge-hono",
+    "type": "git"
+  },
+  "keywords": [
+    "froge",
+    "hono",
+    "http",
+    "web",
+    "bun",
+    "deno"
+  ]
+}
