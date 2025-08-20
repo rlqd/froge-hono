@@ -2,9 +2,13 @@ import froge from "froge";
 import type { Hono } from "hono";
 import type { Server } from "http";
 
-interface HttpServerOptions {
+export interface HttpServerOptions {
+    /** Hostname the server is listening on (e.g. '0.0.0.0' or '127.0.0.1') */
     host?: string,
+    /** TCP port the server is listening on (e.g. 8080) */
     port?: number,
+    /** Only for Bun - idleTimeout option */
+    bunIdleTimeout?: number,
 }
 
 export default function createHonoServer(app: Hono, options: HttpServerOptions = {}) {
@@ -21,6 +25,7 @@ export default function createHonoServer(app: Hono, options: HttpServerOptions =
                     fetch: app.fetch,
                     hostname: config.host,
                     port: config.port,
+                    idleTimeout: config.bunIdleTimeout,
                 });
                 stop = () => server.stop();
             } else if (typeof Deno !== 'undefined') {

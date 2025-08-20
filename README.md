@@ -40,3 +40,21 @@ const server = froge().up({
 
 server.launch().then(() => console.log('Ready'));
 ```
+
+## Configuration
+
+Optional configuration is accepted as a second argument:
+
+```typescript
+// Example configuration with each option set to default
+createHonoServer(app, {
+    host: '0.0.0.0',
+    port: '8080',
+    bunIdleTimeout: 10,
+})
+```
+
+Alternatively, some options may be set as environmental variables:
+
+* `HTTP_HOST` - equivalent to `host` config option
+* `HTTP_PORT` - equivalent to `port` config option
